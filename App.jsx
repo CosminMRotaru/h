@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { clsx } from "clsx";
 import { languages } from "./languages";
@@ -15,8 +14,23 @@ export default function HangDev() {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
-    const [currentWord, setCurrentWord] = useState(() => getRandomWord(words));
-    const [guessedLetters, setGuessedLetters] = useState([]);
+    const [currentWord, setCurrentWord] = useState(() => {
+        const stored = localStorage.getItem("currentWord");
+        return stored || getRandomWord(words);
+    });
+
+    const [guessedLetters, setGuessedLetters] = useState(() => {
+        const stored = localStorage.getItem("guessedLetters");
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("currentWord", currentWord);
+    }, [currentWord]);
+
+    useEffect(() => {
+        localStorage.setItem("guessedLetters", JSON.stringify(guessedLetters));
+    }, [guessedLetters]);
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -110,7 +124,7 @@ export default function HangDev() {
         if (!isGameOver && isLastGuessIncorrect) {
             return (
                 <p className="farewell-message">
-                    {getFarewellText(languages[wrongGuessCount - 1].name)}
+                    {getFarewellText(languages[wrongGuessCount - 1]?.name)}
                 </p>
             );
         }
