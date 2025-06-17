@@ -60,7 +60,7 @@ main.hangdev-main {
 button.key {
     height: 40px;
     width: 40px;
-    background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+    background: #2a2a2a;
     border: 1px solid #444;
     border-radius: 5px;
     color: #f0f0f0;
@@ -73,7 +73,7 @@ button.key {
 }
 
 button.key:hover:not(:disabled):not(.correct):not(.wrong) {
-    background: linear-gradient(145deg, #3c3c3c, #2a2a2a);
+    background: #3c3c3c;
     transform: scale(1.05);
     color: #ffffff;
     box-shadow: 0 0 8px #ffffffaa;
@@ -83,15 +83,45 @@ button.key:hover:not(:disabled):not(.correct):not(.wrong) {
 button.key.correct {
     background-color: #10A95B;
     color: #fff;
-    box-shadow: 0 0 8px #10A95B;
-    border: 2px solid #4af626;
+    border: none;
+    box-shadow: 0 0 12px #10A95B, inset 0 0 4px #10A95B;
     animation: glow 1s infinite alternate;
 }
 
 button.key.wrong {
-    background-color: #BA2A2A;
+    background-color: #e53935;
     color: #fff;
-    box-shadow: 0 0 8px #BA2A2A;
+    border: none;
+    box-shadow: 0 0 12px #e53935, inset 0 0 4px #e53935;
+}
+
+.word-letter.missed-letter {
+    color: #fff;
+    background-color: #e53935;
+    border-color: #e53935;
+}
+
+.word-letter {
+    height: 48px;
+    width: 48px;
+    background-color: #232323;
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    border: 2px solid #4af626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+section.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 500px;
+    margin-bottom: 40px;
 }
 
 button.key:disabled {
@@ -162,9 +192,11 @@ section.game-status > p.farewell-message {
     font-weight: 400;
     margin: 0;
 }
+
 section.game-status > p {
   margin: 1px 0;
 }
+
 section.game-status > h2 {
   margin: 0;
 }
@@ -211,34 +243,6 @@ section.word {
     margin-bottom: 24px;
 }
 
-.word-letter {
-    height: 48px;
-    width: 48px;
-    background-color: #232323;
-    color: #e0e0e0;
-    font-size: 1.5rem;
-    border: 2px solid #4af626;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.word-letter.missed-letter {
-    color: #ff3860;
-    border-color: #ff3860;
-}
-
-section.keyboard {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    max-width: 500px;
-    margin-bottom: 40px;
-}
-
 .control-bar {
     display: flex;
     flex-wrap: wrap;
@@ -260,6 +264,7 @@ section.keyboard {
     transition: background-color 0.2s ease;
 }
 
+/* LIGHT THEME */
 body.light-theme {
     background: linear-gradient(135deg, #eae8f4, #f7f5fb);
     color: #2a2a2a;
@@ -317,15 +322,22 @@ body.light-theme button.key:hover:not(:disabled):not(.correct):not(.wrong) {
 body.light-theme button.key.correct {
     background-color: #41c97c;
     color: #fff;
-    box-shadow: 0 0 8px #41c97c;
-    border: 2px solid #4af626;
+    box-shadow: 0 0 12px #41c97c, inset 0 0 4px #41c97c;
+    border: none;
     animation: glow 1s infinite alternate;
 }
 
 body.light-theme button.key.wrong {
-    background-color: #e05a5a;
+    background-color: #f44336;
     color: #fff;
-    box-shadow: 0 0 8px #e05a5a;
+    box-shadow: 0 0 12px #f44336, inset 0 0 4px #f44336;
+    border: none;
+}
+
+body.light-theme .word-letter.missed-letter {
+    background-color: #f44336;
+    color: white;
+    border-color: #f44336;
 }
 
 body.light-theme button.new-game {
