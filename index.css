@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Share+Tech+Mono&display=swap');
 
 * {
     box-sizing: border-box;
@@ -39,9 +39,93 @@ main.hangdev-main {
 
 .hangdev-subtitle {
     font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
     color: #888;
     max-width: 360px;
     margin: 0 auto 4px auto;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px #4af626; }
+    to { box-shadow: 0 0 15px #4af626; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+button.key {
+    height: 40px;
+    width: 40px;
+    background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #f0f0f0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'Share Tech Mono', monospace;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.3s;
+    box-shadow: 0 0 4px #4af62655;
+}
+
+button.key:hover:not(:disabled):not(.correct):not(.wrong) {
+    background: linear-gradient(145deg, #3c3c3c, #2a2a2a);
+    transform: scale(1.05);
+    color: #ffffff;
+    box-shadow: 0 0 8px #ffffffaa;
+    animation: pulse 0.6s ease-in-out;
+}
+
+button.key.correct {
+    background-color: #10A95B;
+    color: #fff;
+    box-shadow: 0 0 8px #10A95B;
+    border: 2px solid #4af626;
+    animation: glow 1s infinite alternate;
+}
+
+button.key.wrong {
+    background-color: #BA2A2A;
+    color: #fff;
+    box-shadow: 0 0 8px #BA2A2A;
+}
+
+button.key:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+button.new-game {
+    background-color: #4af626;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px #4af626;
+}
+
+button.new-game:hover {
+    background-color: #38cc4f;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 section.game-status {
@@ -78,11 +162,9 @@ section.game-status > p.farewell-message {
     font-weight: 400;
     margin: 0;
 }
-
 section.game-status > p {
   margin: 1px 0;
 }
-
 section.game-status > h2 {
   margin: 0;
 }
@@ -157,78 +239,25 @@ section.keyboard {
     margin-bottom: 40px;
 }
 
-button.key {
-    height: 40px;
-    width: 40px;
-    background-color: #2d2d2d;
-    border: 1px solid #444;
-    border-radius: 5px;
-    color: #f0f0f0;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s, box-shadow 0.3s;
-    box-shadow: 0 0 4px #4af62655;
+.control-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 6px;
 }
 
-button.key:hover:not(:disabled):not(.correct):not(.wrong) {
-    background-color: #333;
-    transform: scale(1.05);
-    color: #ffffff;
-    box-shadow: 0 0 8px #ffffffaa;
-    animation: pulse 0.6s ease-in-out;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-button.key.correct {
-    background-color: #10A95B;
-    color: #fff;
-    box-shadow: 0 0 8px #10A95B;
-}
-
-button.key.wrong {
-    background-color: #BA2A2A;
-    color: #fff;
-    box-shadow: 0 0 8px #BA2A2A;
-}
-
-button.key:disabled {
-    cursor: not-allowed;
-    opacity: 0.4;
-}
-
-button.new-game {
-    background-color: #4af626;
-    border: none;
+.control-bar select {
     border-radius: 6px;
-    color: #000;
-    font-size: 1rem;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 10px 12px;
     font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 8px #4af626;
-}
-
-button.new-game:hover {
-    background-color: #38cc4f;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #2d2d2d;
+    color: #f0f0f0;
+    transition: background-color 0.2s ease;
 }
 
 body.light-theme {
@@ -272,13 +301,14 @@ body.light-theme section.game-status.farewell {
 }
 
 body.light-theme button.key {
-    background-color: #d8d8f2;
+    background: linear-gradient(145deg, #e4e4fa, #d3d3ed);
     color: #1a1a1a;
     box-shadow: 0 0 4px #9994ff88;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 body.light-theme button.key:hover:not(:disabled):not(.correct):not(.wrong) {
-    background-color: #c5c5ec;
+    background: linear-gradient(145deg, #d0d0eb, #c5c5ec);
     color: #ffffff;
     box-shadow: 0 0 8px #ffffffcc;
     animation: pulse 0.6s ease-in-out;
@@ -288,6 +318,8 @@ body.light-theme button.key.correct {
     background-color: #41c97c;
     color: #fff;
     box-shadow: 0 0 8px #41c97c;
+    border: 2px solid #4af626;
+    animation: glow 1s infinite alternate;
 }
 
 body.light-theme button.key.wrong {
@@ -306,27 +338,6 @@ body.light-theme button.new-game:hover {
     background-color: #53c974;
 }
 
-.control-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 12px;
-    margin-bottom: 6px;
-}
-
-.control-bar select {
-    border-radius: 6px;
-    padding: 10px 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    background-color: #2d2d2d;
-    color: #f0f0f0;
-    transition: background-color 0.2s ease;
-}
-
 body.light-theme .control-bar select {
     background-color: #e0e0f2;
     color: #222;
@@ -336,28 +347,34 @@ body.light-theme .control-bar select {
     .hangdev-title {
         font-size: 1.5rem;
     }
+
     .hangdev-subtitle {
         font-size: 0.95rem;
         padding: 0 8px;
     }
+
     section.word {
         gap: 3px;
     }
+
     .word-letter {
         width: 36px;
         height: 36px;
         font-size: 1.25rem;
     }
+
     section.keyboard {
         max-width: 95vw;
         gap: 6px;
         margin-bottom: 32px;
     }
+
     button.key {
         width: 32px;
         height: 32px;
         font-size: 0.85rem;
     }
+
     button.new-game {
         width: 200px;
         font-size: 0.95rem;
@@ -368,29 +385,36 @@ body.light-theme .control-bar select {
     .hangdev-title {
         font-size: 1.25rem;
     }
+
     .hangdev-subtitle {
         font-size: 0.85rem;
     }
+
     .word-letter {
         width: 30px;
         height: 30px;
         font-size: 1.1rem;
     }
+
     button.key {
         width: 28px;
         height: 28px;
         font-size: 0.75rem;
     }
+
     section.keyboard {
         gap: 5px;
     }
+
     button.new-game {
         width: 180px;
         font-size: 0.9rem;
     }
+
     section.language-chips {
         gap: 4px;
     }
+
     span.chip {
         font-size: 0.75rem;
         padding: 4px 6px;
