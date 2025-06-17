@@ -192,11 +192,9 @@ section.game-status > p.farewell-message {
     font-weight: 400;
     margin: 0;
 }
-
 section.game-status > p {
   margin: 1px 0;
 }
-
 section.game-status > h2 {
   margin: 0;
 }
@@ -264,7 +262,8 @@ section.word {
     transition: background-color 0.2s ease;
 }
 
-/* LIGHT THEME */
+/* -------- LIGHT THEME -------- */
+
 body.light-theme {
     background: linear-gradient(135deg, #eae8f4, #f7f5fb);
     color: #2a2a2a;
@@ -306,17 +305,10 @@ body.light-theme section.game-status.farewell {
 }
 
 body.light-theme button.key {
-    background: linear-gradient(145deg, #e4e4fa, #d3d3ed);
+    background-color: #dcdcf5;
     color: #1a1a1a;
     box-shadow: 0 0 4px #9994ff88;
     font-family: 'Share Tech Mono', monospace;
-}
-
-body.light-theme button.key:hover:not(:disabled):not(.correct):not(.wrong) {
-    background: linear-gradient(145deg, #d0d0eb, #c5c5ec);
-    color: #ffffff;
-    box-shadow: 0 0 8px #ffffffcc;
-    animation: pulse 0.6s ease-in-out;
 }
 
 body.light-theme button.key.correct {
@@ -338,6 +330,13 @@ body.light-theme .word-letter.missed-letter {
     background-color: #f44336;
     color: white;
     border-color: #f44336;
+}
+
+body.light-theme button.key:hover:not(:disabled):not(.correct):not(.wrong) {
+    background-color: #cacaf0;
+    color: #ffffff;
+    box-shadow: 0 0 8px #ffffffcc;
+    animation: pulse 0.6s ease-in-out;
 }
 
 body.light-theme button.new-game {
